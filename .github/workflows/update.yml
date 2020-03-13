@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  update:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    
+    - name: Install Poetry
+      uses: dschep/install-poetry-action@v1.3
+
+    # Runs a single command using the runners shell
+    - name: Get new value
+      run: poetry run python scripts/get_new.py
+
+    - name: Git Commit and Push
+      uses: github-actions-x/commit@v2.4
+      with:
+        # Github Token with commit access
+        github-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        # Override branch to push to
+        push-branch: master
+        # Specify commit message
+        commit-message: autoupdate
