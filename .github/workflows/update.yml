@@ -34,8 +34,8 @@ jobs:
     - name: Get new value
       run: poetry run python scripts/get_new.py
 
-    - name: check it changed?
-      run: git status
+    - name: Add file
+      run: git add .
 
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.4
