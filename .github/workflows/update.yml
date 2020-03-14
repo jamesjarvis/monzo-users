@@ -28,6 +28,9 @@ jobs:
       uses: dschep/install-poetry-action@v1.3
 
     # Runs a single command using the runners shell
+    - name: Install dependencies
+      run: poetry install
+
     - name: Get new value
       run: poetry run python scripts/get_new.py
 
