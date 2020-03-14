@@ -46,4 +46,4 @@ jobs:
         force-add: 'true'
         files: monzo_users.csv
         name: bot
-        email: git@jamesjarvis.io
+        email: no-reply@github.com
