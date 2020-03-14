@@ -43,3 +43,4 @@ jobs:
         push-branch: master
         # Specify commit message
         commit-message: autoupdate
+        force-add: 'true'
