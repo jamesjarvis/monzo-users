@@ -25,3 +25,4 @@ def add_value(name: str, count: int):
     fieldnames = ['date', 'count']
     writer = DictWriter(csvfile, fieldnames=fieldnames)
     writer.writerow(newrow)
+    print(f"Successfully wrote new count {count} to {name} at {now.isoformat()}")
