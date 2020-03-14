@@ -34,16 +34,16 @@ jobs:
     - name: Get new value
       run: poetry run python scripts/get_new.py
 
-    - name: Add file
-      run: git add .
-
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.4
       with:
         # Github Token with commit access
         github-token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         # Override branch to push to
-        push-branch: master
+        push-branch: 'master'
         # Specify commit message
-        commit-message: autoupdate
+        commit-message: 'autoupdate'
         force-add: 'true'
+        files: monzo_users.csv
+        name: bot
+        email: git@jamesjarvis.io
