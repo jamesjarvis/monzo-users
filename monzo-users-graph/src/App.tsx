@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     // Download csv data
     PapaParse.parse(
-      "/monzo_users.csv",
+      "/monzo-users/monzo_users.csv",
       {
         download: true,
         header: true,
