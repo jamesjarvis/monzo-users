@@ -26,11 +26,11 @@ jobs:
       with:
         node-version: '10.x'
 
-    - run: cd monzo-users-graph
     - run: yarn install
+      working-directory: monzo-users-graph
     - run: yarn build
+      working-directory: monzo-users-graph
 
-    - run: cd ..
     - run: cp monzo_users.csv monzo-users-graph/build/monzo_users.csv
 
     - name: Deploy

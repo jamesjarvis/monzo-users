@@ -1,5 +1,6 @@
 {
   "name": "monzo-users-graph",
+  "homepage":"https://jamesjarvis.github.io/monzo-users",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
