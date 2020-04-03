@@ -4,7 +4,7 @@
 
 This repo is an experiment with using GitHub to automatically update and store data regarding the growth of Monzo's current account user numbers.
 
-You can view the website at jamesjarvis.github.io/monzo-users, or just download the data for yourself at https://raw.githubusercontent.com/jamesjarvis/monzo-users/master/monzo_users.csv.
+You can view the website at https://jamesjarvis.github.io/monzo-users, or just download the data for yourself at https://raw.githubusercontent.com/jamesjarvis/monzo-users/master/monzo_users.csv.
 
 Feel free to make a PR if you have some data that can fill in the gaps.
 
