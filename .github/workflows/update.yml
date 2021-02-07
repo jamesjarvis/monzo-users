@@ -18,18 +18,22 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v2
 
-    # Setup Python
-    - uses: actions/setup-python@v1
+    - name: Set up python 
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
     
-    # Setup Poetry
     - name: Install Poetry
-      uses: dschep/install-poetry-action@v1.3
+      uses: snok/install-poetry@v1.1.1
+      with:
+        virtualenvs-create: true
 
     # Runs a single command using the runners shell
     - name: Install dependencies
-      run: poetry install
+      run: poetry install --no-interaction
 
     - name: Get new value
       run: poetry run python scripts/get_new.py
