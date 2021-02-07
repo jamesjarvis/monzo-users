@@ -49,5 +49,5 @@ jobs:
         commit-message: 'autoupdate'
         force-add: 'true'
         files: monzo_users.csv
-        name: bot
-        email: no-reply@github.com
+        name: 'github-actions[bot]'
+        email: 'github-actions[bot]@users.noreply.github.com'
