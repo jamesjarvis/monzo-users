@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/monzo-users/static/css/main.23e5c7b1.chunk.css",
+    "main.js": "/monzo-users/static/js/main.8b64214f.chunk.js",
+    "main.js.map": "/monzo-users/static/js/main.8b64214f.chunk.js.map",
+    "runtime-main.js": "/monzo-users/static/js/runtime-main.3a6fec9e.js",
+    "runtime-main.js.map": "/monzo-users/static/js/runtime-main.3a6fec9e.js.map",
+    "static/js/2.6c1aca2c.chunk.js": "/monzo-users/static/js/2.6c1aca2c.chunk.js",
+    "static/js/2.6c1aca2c.chunk.js.map": "/monzo-users/static/js/2.6c1aca2c.chunk.js.map",
+    "index.html": "/monzo-users/index.html",
+    "precache-manifest.16e6694dc5ef65c7b69a5e3e03044fce.js": "/monzo-users/precache-manifest.16e6694dc5ef65c7b69a5e3e03044fce.js",
+    "service-worker.js": "/monzo-users/service-worker.js",
+    "static/css/main.23e5c7b1.chunk.css.map": "/monzo-users/static/css/main.23e5c7b1.chunk.css.map",
+    "static/js/2.6c1aca2c.chunk.js.LICENSE.txt": "/monzo-users/static/js/2.6c1aca2c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3a6fec9e.js",
+    "static/js/2.6c1aca2c.chunk.js",
+    "static/css/main.23e5c7b1.chunk.css",
+    "static/js/main.8b64214f.chunk.js"
+  ]
+}
