@@ -4,11 +4,17 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    assignees:
+      - "jamesjarvis"
   - package-ecosystem: "npm"
     directory: "/monzo-users-graph"
     schedule:
       interval: "monthly"
+    assignees:
+      - "jamesjarvis"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    assignees:
+      - "jamesjarvis"
