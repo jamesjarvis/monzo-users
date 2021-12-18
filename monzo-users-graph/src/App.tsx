@@ -13,6 +13,11 @@ interface dataarr {
   y: number;
 }
 
+interface row {
+  date: string;
+  count: number;
+}
+
 function App() {
   const [data, setData] = useState<datawrapper[]>([]);
 
@@ -50,16 +55,17 @@ function App() {
       {
         download: true,
         header: true,
-        error: (er, file) => {
+        error: (er, _) => {
           console.log(er);
         },
-        complete: (c, f) => {
+        complete: (c, _) => {
           let newdata: dataarr[] = [];
-          c.data.forEach((entry, i) => {
-            if (entry.date) {
+          c.data.forEach((entry, _) => {
+            let typedentry = (entry as row)
+            if (typedentry.date) {
               newdata.push({
-                x: new Date(entry.date).getTime(),
-                y: +entry.count
+                x: new Date(typedentry.date).getTime(),
+                y: +typedentry.count
               });
             }
           });
