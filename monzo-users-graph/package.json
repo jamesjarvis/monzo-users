@@ -1,6 +1,6 @@
 {
   "name": "monzo-users-graph",
-  "homepage":"https://jamesjarvis.github.io/monzo-users",
+  "homepage": "https://jamesjarvis.github.io/monzo-users",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "react": "^17.0.2",
     "react-charts": "^3.0.0-beta.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "3.4.0",
+    "react-scripts": "^5.0.0",
     "typescript": "~3.8.3"
   },
   "scripts": {
