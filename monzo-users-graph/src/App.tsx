@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import * as PapaParse from "papaparse";
-import { Chart } from "react-charts";
-
-interface datawrapper {
-  label: string;
-  data: dataarr[];
-}
-
-interface dataarr {
-  x: number;
-  y: number;
-}
+import {
+  Charts,
+  ChartContainer,
+  ChartRow,
+  YAxis,
+  LineChart
+} from "react-timeseries-charts";
+import {TimeSeries} from 'pondjs';
 
 interface row {
   date: string;
@@ -19,34 +16,14 @@ interface row {
 }
 
 function App() {
-  const [data, setData] = useState<datawrapper[]>([]);
-
-  const axis = React.useMemo(
-    () => [
-      { primary: true, type: "time", position: "bottom", show: true },
-      { type: "linear", position: "left", show: true }
+  const [data, setData] = useState<TimeSeries>(new TimeSeries({
+    name: "monzo-users",
+    columns: ["time", "users"],
+    points: [
+      [1400425947000, 52],
+      [1400425948000, 18],
     ],
-    []
-  );
-
-  const options = React.useMemo(
-    () => [
-      {
-        scales: {
-          xAxes: [
-            {
-              type: "time",
-              distribution: "linear",
-              time: {
-                unit: "day"
-              }
-            }
-          ]
-        }
-      }
-    ],
-    []
-  );
+  }));
 
   useEffect(() => {
     // Download csv data
@@ -59,22 +36,23 @@ function App() {
           console.log(er);
         },
         complete: (c, _) => {
-          let newdata: dataarr[] = [];
+          let newdata: any[] = [];
           c.data.forEach((entry, _) => {
             let typedentry = (entry as row)
             if (typedentry.date) {
-              newdata.push({
-                x: new Date(typedentry.date).getTime(),
-                y: +typedentry.count
-              });
+              newdata.push([
+                new Date(typedentry.date).getTime(),
+                +typedentry.count
+              ]);
             }
           });
-          setData([
-            {
-              label: "monzo users",
-              data: newdata
-            }
-          ]);
+          setData(
+            new TimeSeries({
+              name: "monzo-users",
+              columns: ["time", "users"],
+              points: newdata,
+            })
+          );
         }
       }
     );
@@ -90,15 +68,19 @@ function App() {
           Users
         </span>
         <div className="chart">
-          <Chart
-            data={data}
-            axes={axis}
-            options={options}
-            primaryCursor
-            secondaryCursor
-            tooltip
-            dark
-          />
+          <ChartContainer timeRange={data.timerange()} format="%b '%y">
+            <ChartRow height="500">
+                <YAxis
+                    id="users"
+                    label="Number of Monzo Users"
+                    min={data.min("users", (a:any) => (a))} max={data.max("users")}
+                    width="60"
+                    />
+                <Charts>
+                    <LineChart axis="users" series={data} />
+                </Charts>
+            </ChartRow>
+        </ChartContainer>
         </div>
       </header>
     </div>
