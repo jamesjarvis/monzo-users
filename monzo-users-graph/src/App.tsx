@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import * as PapaParse from "papaparse";
-import {
-  Charts,
-  ChartContainer,
-  ChartRow,
-  YAxis,
-  LineChart,
-} from "react-timeseries-charts";
-import { TimeSeries, Event } from "pondjs";
+import Chart from "react-apexcharts";
 
 interface row {
   date: string;
@@ -16,13 +9,7 @@ interface row {
 }
 
 function App() {
-  const [data, setData] = useState<TimeSeries>();
-  // new TimeSeries({
-  //   name: "monzo-users",
-  //   events: [
-  //     new Event(new Date(), 10),
-  //   ],
-  // })
+  const [data, setData] = useState<number[][]>();
 
   useEffect(() => {
     // Download csv data
@@ -33,27 +20,17 @@ function App() {
         console.log(er);
       },
       complete: (c, _) => {
-        let newdata: any[] = [];
+        let newdata: number[][] = [];
         c.data.forEach((entry, _) => {
           let typedentry = entry as row;
           if (typedentry.date) {
             newdata.push(
-              // new Event(
-              //   new Date(typedentry.date),
-              //   +typedentry.count,
-              // )
-              [new Date(typedentry.date), +typedentry.count]
+              [new Date(typedentry.date).getTime(), +typedentry.count]
             );
           }
         });
-        console.log(newdata);
-        let timeseries = new TimeSeries({
-          name: "monzo-users",
-          columns: ["time", "users"],
-          points: newdata,
-          // events: newdata,
-        });
-        setData(timeseries);
+
+        setData(newdata);
       },
     });
   }, []);
@@ -69,20 +46,61 @@ function App() {
         </span>
         <div className="chart">
           {data ? (
-            <ChartContainer timeRange={data.timerange()} format="%b '%y">
-              <ChartRow height="500">
-                <YAxis
-                  id="users"
-                  label="Number of Monzo Users"
-                  min={0}
-                  max={data.max("users")}
-                  width="60"
-                />
-                <Charts>
-                  <LineChart axis="users" series={data} />
-                </Charts>
-              </ChartRow>
-            </ChartContainer>
+            <Chart
+              type = "line"
+              series = {[{name: "monzo-users", data: data}]}
+              options = {{
+                chart: {
+                  type: "area",
+                  stacked: false,
+                  zoom: {
+                    type: 'x',
+                    enabled: true,
+                    autoScaleYaxis: true
+                  },
+                  toolbar: {
+                    autoSelected: 'zoom'
+                  }
+                },
+                dataLabels: {
+                  enabled: false
+                },
+                markers: {
+                  size: 0,
+                },
+                fill: {
+                  type: 'gradient',
+                  gradient: {
+                    shadeIntensity: 1,
+                    inverseColors: false,
+                    opacityFrom: 0.5,
+                    opacityTo: 1,
+                    stops: [0, 90, 100]
+                  },
+                },
+                yaxis: {
+                  labels: {
+                    formatter: function (val) {
+                      return (val).toFixed(0);
+                    },
+                  },
+                  title: {
+                    text: 'Price'
+                  },
+                },
+                xaxis: {
+                  type: 'datetime',
+                },
+                tooltip: {
+                  shared: false,
+                  y: {
+                    formatter: function (val) {
+                      return (val).toFixed(0)
+                    }
+                  }
+                }
+              }}
+            />
           ) : (
             <p>Loading...</p>
           )}
