@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/monzo-users/static/css/main.75ac7480.css",
+    "main.js": "/monzo-users/static/js/main.81b3a2ee.js",
+    "index.html": "/monzo-users/index.html",
+    "main.75ac7480.css.map": "/monzo-users/static/css/main.75ac7480.css.map",
+    "main.81b3a2ee.js.map": "/monzo-users/static/js/main.81b3a2ee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75ac7480.css",
+    "static/js/main.81b3a2ee.js"
+  ]
+}
